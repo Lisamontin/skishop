@@ -7,4 +7,5 @@ public class Product
   public string ImgUrl { get; set; }
   public int Size { get; set; }
   public string Color { get; set; }
+  public int CategoryId { get; set; }
 }
