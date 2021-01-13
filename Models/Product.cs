@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 public class Product
 {
   public int Id { get; set; }
@@ -7,4 +9,7 @@ public class Product
   public string ImgUrl { get; set; }
   public int Brand { get; set; }
   public string Color { get; set; }
+
+  ICollection<ProductOrder> ProductOrders { get; set; }
+  ICollection<ProductCategory> ProductCategories { get; set; }
 }
