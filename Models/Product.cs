@@ -10,6 +10,6 @@ public class Product
   public int Brand { get; set; }
   public string Color { get; set; }
 
-  ICollection<ProductOrder> ProductOrders { get; set; }
-  ICollection<ProductCategory> ProductCategories { get; set; }
+  public ICollection<ProductOrder> ProductOrders { get; set; }
+  public ICollection<ProductCategory> ProductCategories { get; set; }
 }
