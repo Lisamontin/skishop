@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,22 +11,26 @@ namespace Products.Controllers
   public class ProductsController : ControllerBase
   {
     private readonly SkishopContext _context;
-    public ProductsController(SkishopContext context) 
+    private readonly IMapper _mapper;
+    public ProductsController(SkishopContext context, IMapper mapper) 
     {
       _context = context;
+      _mapper = mapper;
     }
 
     [HttpGet]
     public async Task<ActionResult> GetProducts() 
     {
       List<Product> products = await _context.Products.Include(po => po.ProductOrders).ToListAsync();
+
       List<ProductDTO> productDTOs = _mapper.Map<List<ProductDTO>>(products);
+
       return Ok(productDTOs);
     }
 
     [HttpGet]
     [Route("{id}")]
-    public async Task<ActionResult> GetById(int id)
+    public async Task<ActionResult> GetById(int id) 
     {
       Product found = await _context.Products.FindAsync(id);
 
@@ -37,18 +42,17 @@ namespace Products.Controllers
     }
 
     [HttpPost]
-    public async Task<ActionResult> CreateProduct(Product newProduct)
+    public async Task<ActionResult> CreateProduct(ProductDTO newProductDTO)
     {
+      Product newProduct = _mapper.Map<Product>(newProductDTO);
+
       _context.Products.Add(newProduct);
       await _context.SaveChangesAsync();
 
-      return newProduct;
+      return CreatedAtAction("CreateProduct", newProduct);
     }
   }
 }
-
-
-
 
 
 
