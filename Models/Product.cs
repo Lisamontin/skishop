@@ -7,7 +7,7 @@ public class Product
   public string Description { get; set; }
   public int Price { get; set; }
   public string ImgUrl { get; set; }
-  public int Brand { get; set; }
+  public string Brand { get; set; }
   public string Color { get; set; }
 
   public ICollection<ProductOrder> ProductOrders { get; set; }
