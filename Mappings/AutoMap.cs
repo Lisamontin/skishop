@@ -9,5 +9,17 @@ public class AutoMap : Profile
 
     CreateMap<ProductOrder, ProductOrderDTO>();
     CreateMap<ProductOrderDTO, ProductOrder>();
+
+    CreateMap<ProductCategory, ProductCategoryDTO>();
+    CreateMap<ProductCategoryDTO, ProductCategory>();
+
+    CreateMap<Category,CategoryDTO>();
+    CreateMap<CategoryDTO, Category>();
+
+    CreateMap<Order, OrderDTO>();
+    CreateMap<OrderDTO, Order>();
+
+    CreateMap<Customer, CustomerDTO>();
+    CreateMap<CustomerDTO, Customer>();
   }
 }
