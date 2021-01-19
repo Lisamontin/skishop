@@ -7,5 +7,5 @@ public class Category
   public string Description { get; set; }
   public string ImgUrl { get; set; }
 
-  ICollection<ProductCategory> ProductCategories { get; set; }//is naming ok? "productcategories"
+  public ICollection<ProductCategory> ProductCategories { get; set; }
 }
