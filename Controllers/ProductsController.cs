@@ -69,7 +69,8 @@ namespace Products.Controllers
           return BadRequest();
       }
 
-      _context.Entry(productDTO).State = EntityState.Modified;
+      var product = _mapper.Map<Product>(productDTO);/////////////////////////check if correct
+      _context.Entry(product).State = EntityState.Modified;
 
       try
       {
