@@ -26,7 +26,7 @@ namespace skishop.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<OrderDTO>>> GetOrders()
         {
-            List<Order> orders = await _context.Orders.Include(po => po.ProductOrders).ToListAsync();
+            List<Order> orders = await _context.Orders.Include(o => o.ProductOrders).ToListAsync();
             List<OrderDTO> orderDTOs = _mapper.Map<List<OrderDTO>>(orders);
             return Ok(orderDTOs);
         }
@@ -84,7 +84,7 @@ namespace skishop.Controllers
             _context.Orders.Add(newOrder);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetOrder), newOrder);
+            return CreatedAtAction(nameof(GetOrder), newOrderDTO);
         }
 
         // DELETE: api/Orders/5

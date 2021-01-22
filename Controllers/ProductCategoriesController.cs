@@ -84,7 +84,7 @@ namespace skishop.Controllers
             _context.ProductCategories.Add(newProductCategory);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetProductCategory), newProductCategory);
+            return CreatedAtAction(nameof(GetProductCategory), newProductCategoryDTO);
         }
 
         // DELETE: api/ProductCategories/5

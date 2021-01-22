@@ -84,7 +84,7 @@ namespace skishop.Controllers
             _context.ProductOrders.Add(newProductOrder);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetProductOrder), newProductOrder);
+            return CreatedAtAction(nameof(GetProductOrder), newProductOrderDTO);
         }
 
         // DELETE: api/ProductOrders/5

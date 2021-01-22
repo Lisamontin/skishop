@@ -56,7 +56,7 @@ namespace Products.Controllers
       _context.Products.Add(newProduct);
       await _context.SaveChangesAsync();
 
-      return CreatedAtAction("CreateProduct", newProduct);
+      return CreatedAtAction("CreateProduct", newProductDTO);
     }
     
 //////////////////////////// PUT //////////////////////////////

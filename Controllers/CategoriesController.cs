@@ -55,21 +55,9 @@ namespace skishop.Controllers
                 return BadRequest();
             }
 
-            var category = _mapper.Map<Category>(categoryDTO); //This line of code needs to be checked.. Added after scaffolding to make put method work, otherwise errmsg = The entity type 'CategoryDTO' was not found. Ensure that the entity type has been added to the model...
+            var category = _mapper.Map<Category>(categoryDTO); //Added after scaffolding to make put method work, otherwise errmsg = The entity type 'CategoryDTO' was not found. Ensure that the entity type has been added to the model...
             _context.Entry(category).State = EntityState.Modified;
 
-/////////////////////////////////////////experimental code///////////////////////
-        // var category = await _context.Categories.FindAsync(id);
-        // category.CategoryName = categoryDTO.CategoryName;
-        // category.Description = categoryDTO.Description;
-        // category.ImgUrl = categoryDTO.ImgUrl;
-
-//////////////////////////////////
-
-        // var category = _mapper.Map<Category>(categoryDTO);
-        // await _context.Categories.FindAsync(id);
-        
-/////////////////////////////////////////////////////////////////////////////////
             try
             {
                 await _context.SaveChangesAsync();
@@ -98,7 +86,7 @@ namespace skishop.Controllers
             _context.Categories.Add(newCategory);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(PostCategory), newCategory);
+            return CreatedAtAction(nameof(PostCategory), newCategoryDTO);
         }
 
 
