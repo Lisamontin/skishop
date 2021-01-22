@@ -17,6 +17,7 @@ namespace skishop
 {
     public class Startup
     {
+        private string corsPolicyName = "CorsPolicy";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -41,6 +42,13 @@ namespace skishop
             IMapper mapper = config.CreateMapper();
 
             services.AddSingleton(mapper);
+            services.AddCors(options => {
+                options.AddPolicy(corsPolicyName, builder => {
+                    builder
+                        .WithOrigins("http://localhost:4200", "https://localhost:4200")
+                        .WithMethods("*");
+                });
+            });
         }
 
 
@@ -57,6 +65,8 @@ namespace skishop
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(corsPolicyName);
 
             app.UseAuthorization();
 
