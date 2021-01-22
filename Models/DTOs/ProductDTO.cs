@@ -10,6 +10,6 @@ public class ProductDTO
   public string Brand { get; set; }
   public string Color { get; set; }
 
-  public ICollection<ProductOrderDTO> ProductOrders { get; set; }
-  public ICollection<ProductCategoryDTO> ProductCategories { get; set; }
+  public ICollection<ProductOrderDTO> ProductOrdersDTO { get; set; }
+  public ICollection<ProductCategoryDTO> ProductCategoriesDTO { get; set; }
 }
