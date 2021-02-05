@@ -84,7 +84,9 @@ namespace skishop.Controllers
             _context.Customers.Add(newCustomer);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetCustomer), newCustomerDTO);
+            CustomerDTO returnValue = _mapper.Map<CustomerDTO>(newCustomer);
+
+            return CreatedAtAction(nameof(GetCustomer), returnValue);
         }
 
         // DELETE: api/Customers/5
