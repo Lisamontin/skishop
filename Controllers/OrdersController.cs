@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -35,7 +33,8 @@ namespace skishop.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<OrderDTO>> GetOrder(int id)
         {
-            Order found = await _context.Orders.FindAsync(id);
+            Order found = await _context.Orders.Include(o => o.ProductOrders).FirstAsync(o => o.Id == id);
+
 
             if (found == null)
             {
@@ -86,7 +85,7 @@ namespace skishop.Controllers
 
             OrderDTO returnValue = _mapper.Map<OrderDTO>(newOrder);
 
-            return CreatedAtAction(nameof(GetOrder), returnValue);
+            return CreatedAtAction(nameof(PostOrder), returnValue);
         }
 
         // DELETE: api/Orders/5

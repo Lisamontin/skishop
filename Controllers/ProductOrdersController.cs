@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -84,7 +82,7 @@ namespace skishop.Controllers
             _context.ProductOrders.Add(newProductOrder);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetProductOrder), newProductOrderDTO);
+            return CreatedAtAction(nameof(PostProductOrder), newProductOrderDTO);
         }
 
         // DELETE: api/ProductOrders/5

@@ -26,7 +26,7 @@ namespace skishop.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CategoryDTO>>> GetCategories()
         {
-            List<Category> categories = await _context.Categories.Include(pc => pc.ProductCategories).ToListAsync();
+            List<Category> categories = await _context.Categories.Include(c => c.ProductCategories).ToListAsync();
             List<CategoryDTO> categoryDTOs = _mapper.Map<List<CategoryDTO>>(categories);
             return Ok(categoryDTOs);
         }
@@ -35,7 +35,8 @@ namespace skishop.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<CategoryDTO>> GetCategory(int id)
         {
-            Category found = await _context.Categories.FindAsync(id);
+            // Category found = await _context.Categories.FindAsync(id);6
+            Category found = await _context.Categories.Include(c => c.ProductCategories).FirstAsync(c => c.Id == id);
 
             if (found == null)
             {
@@ -55,7 +56,7 @@ namespace skishop.Controllers
                 return BadRequest();
             }
 
-            var category = _mapper.Map<Category>(categoryDTO); //Added after scaffolding to make put method work, otherwise errmsg = The entity type 'CategoryDTO' was not found. Ensure that the entity type has been added to the model...
+            var category = _mapper.Map<Category>(categoryDTO); 
             _context.Entry(category).State = EntityState.Modified;
 
             try
