@@ -7,5 +7,5 @@ public class CategoryDTO
   public string Description { get; set; }
   public string ImgUrl { get; set; }
 
-  ICollection<ProductCategoryDTO> ProductCategoriesDTO { get; set; }
+  ICollection<ProductCategoryDTO> ProductCategories { get; set; }
 }

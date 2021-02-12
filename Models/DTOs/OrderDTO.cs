@@ -7,5 +7,5 @@ public class OrderDTO
   public string PaymentMethod { get; set; }
   // public DateTime Created { get; set; }
 
-  public ICollection<ProductOrderDTO> ProductOrdersDTO { get; set; }
+  public ICollection<ProductOrderDTO> ProductOrders { get; set; }
 }

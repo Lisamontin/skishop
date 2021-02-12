@@ -9,5 +9,5 @@ public class CustomerDTO
   public string Email { get; set; }
   public string Address { get; set; }
   
-  ICollection<OrderDTO> OrdersDTO { get; set; } 
+  ICollection<OrderDTO> Orders { get; set; } 
 }
